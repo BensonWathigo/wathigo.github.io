@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wathigo | Data Scientist & Economist</title>
+  <meta name="description" content="Portfolio of Wathigo – Economist & Data Scientist. Projects in ML, NLP, analytics, and data storytelling for finance, policy, and social impact." />
+  <meta name="author" content="Wathigo" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Wathigo | Data Scientist & Economist" />
+  <meta property="og:description" content="Projects in ML, NLP, analytics, and data storytelling for finance, policy, and social impact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" />
+  <meta property="og:url" content="" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #f8fafb;
+      --text: #0b1b1b;
+      --muted: #5c6b6b;
+      --accent: #1faa5b; /* green accent */
+      --accent-600: #17914d;
+      --ring: rgba(31, 170, 91, 0.25);
+      --border: #e6ecec;
+      --shadow: 0 10px 30px rgba(0,0,0,0.06);
+      --radius: 18px;
+      --container: 1100px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1212;
+        --card: #121a1a;
+        --text: #e6f2f2;
+        --muted: #a6b3b3;
+        --accent: #2ed17b;
+        --accent-600: #26b46a;
+        --ring: rgba(46, 209, 123, 0.3);
+        --border: #203031;
+        --shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+
+    /* Header / Nav */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(10px);
+      background: color-mix(in oklab, var(--bg) 75%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.2px; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px var(--ring); }
+    .links { display: flex; gap: 18px; align-items: center; }
+    .links a { color: var(--text); opacity: 0.9; font-weight: 500; }
+    .links a:hover { opacity: 1; }
+
+    .menu-btn { display:none; }
+    @media (max-width: 820px) {
+      .links { display:none; }
+      .menu-btn { display:block; background: var(--card); border: 1px solid var(--border); padding: 8px 12px; border-radius: 12px; }
+      #mobileMenu.open { display:block; }
+      #mobileMenu { display:none; border-top: 1px solid var(--border); }
+      #mobileMenu a { display:block; padding: 12px 0; color: var(--text); border-bottom: 1px dashed var(--border); }
+    }
+
+    /* Hero */
+    .hero { padding: 64px 0 36px; }
+    .hero-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; }
+    .tag { display:inline-flex; align-items:center; gap:8px; padding: 6px 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--border); font-size: 12px; font-weight: 600; color: var(--muted); }
+    .title { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 10px 0 8px; font-weight: 800; letter-spacing: -0.02em; }
+    .subtitle { font-size: clamp(16px, 2.4vw, 18px); color: var(--muted); margin: 0 0 20px; }
+    .cta { display:flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+    .btn { display:inline-flex; align-items:center; gap: 10px; padding: 12px 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--card); font-weight: 600; }
+    .btn.primary { background: var(--accent); color: white; border-color: var(--accent-600); box-shadow: var(--shadow); }
+    .btn:focus { outline: none; box-shadow: 0 0 0 6px var(--ring); }
+
+    .avatar {
+      width: 220px; aspect-ratio: 1/1; border-radius: 24px; object-fit: cover; border: 6px solid color-mix(in oklab, var(--border) 70%, transparent);
+      box-shadow: var(--shadow);
+      justify-self: end;
+    }
+
+    @media (max-width: 920px) {
+      .hero-wrap { grid-template-columns: 1fr; text-align: left; }
+      .avatar { justify-self: start; }
+    }
+
+    /* Sections */
+    section { padding: 36px 0; }
+    .section-title { font-size: 22px; font-weight: 800; margin-bottom: 18px; }
+    .muted { color: var(--muted); }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+    .about-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .about ul { padding-left: 18px; margin: 8px 0 0; }
+
+    @media (max-width: 920px) { .about { grid-template-columns: 1fr; } }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 1024px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .projects-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .thumb { height: 160px; background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 18%, transparent), transparent); display:flex; align-items:center; justify-content:center; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display:block; }
+    .card-body { padding: 16px; }
+    .card-title { font-weight: 700; font-size: 16px; margin: 0 0 6px; }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px; }
+    .chip { font-size: 12px; padding: 6px 10px; border-radius: 999px; background: #eef6f2; color: #185a35; border: 1px solid #d5e9de; }
+    @media (prefers-color-scheme: dark) { .chip { background:#0e2a1c; color:#bff0d3; border-color:#173b27; } }
+
+    .card-actions { display:flex; gap: 10px; padding: 0 16px 16px; }
+    .small { font-size: 13px; color: var(--muted); }
+
+    /* Skills */
+    .skills { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .pill { display:inline-flex; padding:8px 12px; border:1px solid var(--border); background: var(--card); border-radius: 999px; font-weight:600; margin: 6px 6px 0 0; }
+    @media (max-width:920px){ .skills{ grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer { padding: 30px 0 50px; border-top: 1px solid var(--border); margin-top: 30px; }
+    .foot { display:flex; justify-content: space-between; align-items:center; gap:12px; flex-wrap: wrap; }
+
+    /* Utilities */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Wathigo</span>
+      </div>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </div>
+    <div id="mobileMenu" class="container" role="navigation" aria-label="Mobile">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <span class="tag">Economist • Data Scientist</span>
+          <h1 class="title">Hi, I’m Wathigo</h1>
+          <p class="subtitle">I turn data into insight for finance, policy and social impact. I work across machine learning, analytics, and data storytelling.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#+254723552044">Contact Me</a>
+            <a class="btn" href="https://github.com/BensonWathigo" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/benson-wathigo-0b5294225/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <img class="avatar" src="my_photo.jpeg" alt="Portrait placeholder" loading="lazy" />
+        <elevenlabs-convai agent-id="agent_6001k4mn1zwffpytajkbz823khg9"></elevenlabs-convai><script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about">
+          <div class="about-card">
+            <p>
+              I’m an economist and certified finance professional with a passion for data-driven insights. With a background in Economics (Second Class Upper), CPA and FMVA, plus hands-on data science training, I bridge finance, policy, and analytics.
+            </p>
+            <p class="muted">I enjoy solving real problems with Python, SQL, and visualization tools such as Power BI.</p>
+          </div>
+          <div class="about-card">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <div>
+                <h3 style="margin:0 0 6px; font-size:14px; opacity:.8;">Academic Background</h3>
+                <ul>
+                  <li>Bachelor of Economics (Second Class Upper)</li>
+                  <li>Data Science</li>
+                  <li>CPA</li>
+                  <li>FMVA Certification</li>
+                </ul>
+              </div>
+              <div>
+                <h3 style="margin:0 0 6px; font-size:14px; opacity:.8;">Interests</h3>
+                <ul>
+                  <li>Finance & Strategy</li>
+                  <li>Data for Social Impact</li>
+                  <li>Policy Research</li>
+                  <li>Tax</li>
+                  <li>Machine Learning</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+
+          <!-- Project Card Template
+            Replace href, img src, and details. Duplicate for new projects.
+          -->
+
+          <article class="card">
+            <a class="thumb" href="#" aria-label="Open Titanic Survival Prediction project">
+              <img src="data:image/jpeg;base64,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" alt="Chart placeholder" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Titanic Survival Prediction</h3>
+              <p class="small">Classification with scikit-learn. Feature engineering, model selection, and evaluation (≈82% accuracy).</p>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">scikit-learn</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/CODSOFT/blob/main/titanic-dataset.ipynb" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/CODSOFT/blob/main/titanic-dataset.ipynb" target="_blank" rel="noopener">Notebook</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="#">
+              <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop" alt="Iris plots" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Iris Flower Classification</h3>
+              <p class="small">Classic ML workflow with tidy code and clear visualizations.</p>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">matplotlib</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/CODSOFT" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/CODSOFT/blob/main/IRIS%20FLOWER%20CLASSIFICATION.ipynb" target="_blank" rel="noopener">Notebook</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="#">
+              <img src="https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=1200&auto=format&fit=crop" alt="Bar and line charts" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Sales Prediction</h3>
+              <p class="small">Time-series/regression modelling to forecast sales and drivers.</p>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">Regression</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/CODSOFT" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/CODSOFT/blob/main/Sales%20prediction.ipynb" target="_blank" rel="noopener">Notebook</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="#">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Fraud detection dashboard" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Youth app using dart flutter</h3>
+              <p class="small">I created an application for my church youth group using dart flutter.</p>
+              <div class="chips">
+                <span class="chip">Dart</span><span class="chip">Flutter</span><span class="chip">UX/UI</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/tim412_Application" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/tim412_Application/tree/main/lib" target="_blank" rel="noopener">Lib</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="#">
+              <img src="GBV.png" alt="NLP / tweets" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">GBV Tweet Classification</h3>
+              <p class="small">NLP model classifying tweets into 5 GBV categories without keyword shortcuts.</p>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">NLP</span><span class="chip">sklearn</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/Datathon" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/Datathon/blob/main/Daystar_ALX.ipynb" target="_blank" rel="noopener">Notebook</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="#">
+              <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?q=80&w=1200&auto=format&fit=crop" alt="Budget charts" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">Maji Ndogo analysis using SQL and Power BI.</h3>
+              <p class="small">Uncovering the secrets behind Maji Ndogo County water shortage.</p>
+              <div class="chips">
+                <span class="chip">Power BI</span><span class="chip">SQL</span><span class="chip">Data Viz</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/SQL_Maji_Ndogo/tree/main" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/SQL_Maji_Ndogo/tree/main" target="_blank" rel="noopener">Notebooks</a>
+              <a class="btn" href="https://github.com/BensonWathigo/Maji_Ndogo_Visualizations" target="_blank" rel="noopener">visualizations</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <a class="thumb" href="#">
+              <img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=1200&auto=format&fit=crop" alt="Map & line charts" loading="lazy" />
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">HIV & Poverty in Africa by CEMA</h3>
+              <p class="small">Exploring WHO & World Bank data to examine correlations and context.</p>
+              <div class="chips">
+                <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">EDA</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/CEMA" target="_blank" rel="noopener">GitHub Repo</a>
+              <a class="btn" href="https://github.com/BensonWathigo/CEMA/blob/main/Benson_Wathigo.ipynb" target="_blank" rel="noopener">Notebook</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills">
+          <div class="about-card">
+            <h3 style="margin-top:0">Programming</h3>
+            <div>
+              <span class="pill">Python</span>
+              <span class="pill">R</span>
+              <span class="pill">SQL</span>
+              <span class="pill">Dart/Flutter</span>
+            </div>
+          </div>
+          <div class="about-card">
+            <h3 style="margin-top:0">Data & ML</h3>
+            <div>
+              <span class="pill">pandas</span>
+              <span class="pill">scikit-learn</span>
+              <span class="pill">Matplotlib</span>
+              <span class="pill">Power BI</span>
+            </div>
+          </div>
+          <div class="about-card">
+            <h3 style="margin-top:0">Finance & Business</h3>
+            <div>
+              <span class="pill">Economics</span>
+              <span class="pill">FMVA</span>
+              <span class="pill">CPA</span>
+              <span class="pill">Research</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog">
+      <div class="container">
+        <h2 class="section-title">Blog</h2>
+        <div class="projects-grid">
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">How I Built a GBV Tweet Classifier</h3>
+              <p class="small">From data collection to evaluation and lessons learned.</p>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/Datathon/blob/main/README.md" target="_blank" rel="noopener">Read</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Inside Maji Ndogo</h3>
+              <p class="small">A data storytelling walkthrough using datasets that expose the rot inside the society. The story features misappropriation of funds, corruption and negligence. Find out how I expose all the above and bring back hope to the people of Maji Ndogo</p>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="https://github.com/BensonWathigo/SQL_Maji_Ndogo?tab=readme-ov-file#revitalizing-maji-ndogo-a-data-driven-approach-to-addressing-water-scarcity" target="_blank" rel="noopener">Read</a>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-body">
+              <h3 class="card-title">Bridging Economics and Data Science</h3>
+              <p class="small">Where analytical rigor meets business context.</p>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="#" target="_blank" rel="noopener">Read</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="about-card" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+          <p style="margin:0;">Let’s collaborate. I’m open to data science, analytics and research roles.</p>
+          <div class="cta">
+            <a class="btn primary" href="mailto:wathigobenson21@gmail.com">wathigobenson21@gmail.com</a>
+            <a class="btn" href="https://www.linkedin.com/in/benson-wathigo-0b5294225/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/BensonWathigo" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn primary" href="#" target="_blank" rel="noopener">+254723552044</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <span class="small">© <span id="year"></span> Wathigo. All rights reserved.</span>
+      <a class="small" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll for anchor links (basic)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+        menu?.classList.remove('open');
+        btn?.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>
